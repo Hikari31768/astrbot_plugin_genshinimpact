@@ -1,6 +1,7 @@
 import logging
 import random
 import requests  # 导入requests库
+from typing import List, Dict, Optional
 from astrbot.api.star import Context, Star, register
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.event.filter import event_message_type, EventMessageType
@@ -45,14 +46,21 @@ ys_text_list = [
 
 @register("astrbot_plugin_genshinimpact", "ましろSaber&Foolllll", "一个原神启动插件", "1.2", "https://github.com/Foolllll-J/astrbot_plugin_genshinimpact")
 class GenshinImpactPlugin(Star):
-    def __init__(self, context: Context):
+    def __init__(self, context: Context, config: Optional[Dict] = None):
         super().__init__(context)
+        self.config = config if config else {}
+        self.group_whitelist: List[int] = self.config.get("group_whitelist", [])
+        self.group_whitelist = [int(gid) for gid in self.group_whitelist]
 
     @event_message_type(EventMessageType.ALL)
     async def on_message(self, event: AstrMessageEvent) -> MessageEventResult:
         """
         当消息中包含“原神”时随机发送一条圣经。
         """
+        group_id = int(event.get_group_id())
+        if self.group_whitelist and group_id not in self.group_whitelist:
+            return
+        
         msg_obj = event.message_obj
         text = msg_obj.message_str or ""
 
