@@ -57,10 +57,13 @@ class GenshinImpactPlugin(Star):
         """
         当消息中包含“原神”时随机发送一条圣经。
         """
-        group_id = int(event.get_group_id())
-        if self.group_whitelist and group_id not in self.group_whitelist:
-            return
-        
+        group_id_str = event.get_group_id()
+        if group_id_str:  # 如果是群聊
+            group_id = int(group_id_str)
+            if self.group_whitelist and group_id not in self.group_whitelist:
+                return
+        # 如果是私聊，则不检查白名单
+
         msg_obj = event.message_obj
         text = msg_obj.message_str or ""
 
