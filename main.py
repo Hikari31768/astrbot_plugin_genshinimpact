@@ -10,7 +10,7 @@ from astrbot.api.event.filter import event_message_type, EventMessageType
 logger = logging.getLogger(__name__)
 
 
-@register("astrbot_plugin_genshinimpact", "ましろSaber&Foolllll&Hikarin", "一个原神启动插件", "1.3", "https://github.com/Hikari31768/astrbot_plugin_genshinimpact")
+@register("astrbot_plugin_genshinimpact", "ましろSaber&Foolllll&Hikarin", "一个原神启动插件", "1.3.1", "https://github.com/Hikari31768/astrbot_plugin_genshinimpact")
 class GenshinImpactPlugin(Star):
     def __init__(self, context: Context, config: Optional[Dict] = None):
         super().__init__(context)
@@ -30,7 +30,7 @@ class GenshinImpactPlugin(Star):
                 return
         # 如果是私聊，则不检查白名单
         else:
-            is_private_message = True
+            global is_private_message = True
 
         msg_obj = event.message_obj
         text = msg_obj.message_str or ""
