@@ -15,7 +15,7 @@ class GenshinImpactPlugin(Star):
     def __init__(self, context: Context, config: Optional[Dict] = None):
         super().__init__(context)
         self.config = config if config else {}
-        self.group_whitelist: List[int] = self.config.get("group_whitelist", [])
+        self.group_whitelist = self.config.get("group_whitelist", [])
         # self.group_whitelist = [int(gid) for gid in self.group_whitelist]
         self.ys_text_list = self.config.get("ys_text_list", [])
 
