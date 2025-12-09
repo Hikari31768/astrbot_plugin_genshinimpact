@@ -47,7 +47,7 @@ class GenshinImpactPlugin(Star):
         logger.debug("Timestamp: %s", msg_obj.timestamp)
         logger.debug("============================")
 
-        if ("原神" in text and (event.is_private_message or not event.is_at_or_wake_command)):
+        if ("原神" in text and (is_private_message or not event.is_at_or_wake_command)):
             # 随机抽取一条圣经
             selected_text = random.choice(self.ys_text_list)
             yield event.plain_result(selected_text)
