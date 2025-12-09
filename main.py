@@ -49,6 +49,6 @@ class GenshinImpactPlugin(Star):
 
         if ("原神" in text and (is_private_message or not event.is_at_or_wake_command)):
             # 随机抽取一条圣经
-            logger.debug("private_message: %s, at_or_wake_command: %s", is_private_message, event.is_at_or_wake_command)
+            logger.info("private_message: %s, at_or_wake_command: %s", is_private_message, event.is_at_or_wake_command)
             selected_text = random.choice(self.ys_text_list)
             yield event.plain_result(selected_text)
