@@ -30,7 +30,8 @@ class GenshinImpactPlugin(Star):
                 return
         # 如果是私聊，则不检查白名单
         else:
-            global is_private_message = True
+            global is_private_message
+            is_private_message = True
 
         msg_obj = event.message_obj
         text = msg_obj.message_str or ""
