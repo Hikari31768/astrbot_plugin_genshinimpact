@@ -8,7 +8,7 @@ from astrbot.api.event.filter import event_message_type, EventMessageType
 
 
 logger = logging.getLogger(__name__)
-
+global is_private_message
 
 @register("astrbot_plugin_genshinimpact", "ましろSaber&Foolllll&Hikarin", "一个原神启动插件", "1.3.1", "https://github.com/Hikari31768/astrbot_plugin_genshinimpact")
 class GenshinImpactPlugin(Star):
@@ -30,7 +30,6 @@ class GenshinImpactPlugin(Star):
                 return
         # 如果是私聊，则不检查白名单
         else:
-            global is_private_message
             is_private_message = True
 
         msg_obj = event.message_obj
